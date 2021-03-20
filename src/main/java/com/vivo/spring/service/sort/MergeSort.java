@@ -21,46 +21,36 @@ public class MergeSort {
                 Arrays.toString(array)));
     }
 
-    public static void sort(int[] array, int lIndex, int hIndex) {
+    public static void sort(int[] input, int lIndex, int hIndex) {
+
         if(lIndex < hIndex) {
-            int mid = (lIndex + hIndex) / 2;
-            // 低位排序
-            sort(array, lIndex, mid);
-            // 高位排序
-            sort(array, mid + 1, hIndex);
-            // 合并双方
-            merge(array, lIndex, mid, hIndex);
+            int mid = ( lIndex + hIndex ) / 2;
+            sort(input, lIndex, mid);
+            sort(input, mid + 1, hIndex);
+            merge(input, lIndex, mid, hIndex);
         }
     }
 
-    /**
-     * @param array 需要合并到数据
-     * @param lIndex 低位指针
-     * @param mid 中间分界线
-     * @param hIndex 高位指针
-     * @return void
-     * @description 合并双数组
-     * @author Yuanzhi Hu
-     * @version v1.0
-     * @since  2021/2/24 23:04
-     **/
-    public static void merge(int[] array, int lIndex, int mid, int hIndex) {
-        int []temp = new int[hIndex - lIndex + 1];
-        int i = 0;
-        int lIndexScan = lIndex;
-        int hIndexScan = mid + 1;
+    public static void merge(int[] input, int lIndex, int mid, int hIndex) {
+        int[]valueMerge = new int[hIndex - lIndex + 1];
+        int index = 0;
+        int iIndex = lIndex;
+        int jIndex = mid + 1;
+        while(iIndex <= mid && jIndex <= hIndex) {
+            valueMerge[index++] = input[iIndex] < input[jIndex] ? input[iIndex++] : input[jIndex++];
+        }
+        while(iIndex <= mid) {
+            valueMerge[index++] = input[iIndex++];
+        }
+        while(jIndex <= hIndex) {
+            valueMerge[index++] = input[jIndex++];
+        }
+        for(int i = 0; i < valueMerge.length; i++) {
+            input[i + lIndex] = valueMerge[i];
+        }
 
-        while(lIndexScan <= mid && hIndexScan <= hIndex) {
-            temp[i++] = array[lIndexScan] < array[hIndexScan] ? array[lIndexScan++] : array[hIndexScan++];
-        }
-        while (lIndexScan <= mid) {
-            temp[i++] = array[lIndexScan++];
-        }
-        while (hIndexScan <= hIndex) {
-            temp[i++] = array[hIndexScan++];
-        }
-        for(i = 0; i < temp.length; i++) {
-            array[lIndex + i] = temp[i];
-        }
     }
+
+
+
 }

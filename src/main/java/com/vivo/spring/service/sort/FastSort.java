@@ -19,37 +19,33 @@ public class FastSort {
                 Arrays.toString(a)));
     }
 
-    public static void sort(int[] arrays) {
-        paratition(arrays, 0, arrays.length - 1);
+    public static void sort(int []input) {
+        sort(input, 0, input.length - 1);
     }
 
-    public static void paratition(int[] a, int lIndex, int hIndex) {
-        if (lIndex < hIndex) {
-            int i = lIndex;
-            int j = hIndex;
-            int value = a[lIndex];
-            while (i < j) {
-
-                // 找到比自己小元素
-                while (i < j && value < a[j]) {
-                    j--;
+    public static void sort(int[] input, int lIndex, int  hIndex) {
+        if(lIndex < hIndex) {
+            int lIndexTemplate = lIndex;
+            int hIndexTemplate = hIndex;
+            int valueReplace = input[lIndexTemplate];
+            while(lIndexTemplate < hIndexTemplate) {
+                while(lIndexTemplate < hIndexTemplate && valueReplace < input[hIndexTemplate]) {
+                    hIndexTemplate--;
                 }
-                if (i < j) {
-                    a[i++] = a[j];
+                if(lIndexTemplate < hIndexTemplate) {
+                    input[lIndexTemplate++] = input[hIndexTemplate];
                 }
-                // 找到比自己大元素
-                while (i < j && value > a[i]) {
-                    i++;
+                while(lIndexTemplate < hIndexTemplate && valueReplace > input[lIndexTemplate]) {
+                    lIndexTemplate++;
                 }
-                // 找到比自己大元素置换
-                if (i < j) {
-                    a[j--] = a[i];
+                if(lIndexTemplate < hIndexTemplate) {
+                    input[hIndexTemplate--] = input[lIndexTemplate];
                 }
             }
-            // 将元素放在最终位置
-            a[i] = value;
-            paratition(a, lIndex, i - 1);
-            paratition(a, i + 1, hIndex);
+            input[lIndexTemplate] = valueReplace;
+            sort(input, lIndex, lIndexTemplate - 1);
+            sort(input, lIndexTemplate + 1, hIndex);
         }
     }
+
 }

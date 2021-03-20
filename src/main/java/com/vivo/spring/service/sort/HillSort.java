@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class HillSort {
 
     public static void main(String[] args) {
-        int[] a = new int[]{1, 11, 9, 12, 19, 4};
+        int[] a = new int[]{1, 11, 9, 12, 19, 4, 5, 30, 43,10};
         sort(a);
         log.info(String.format("方法：%s 第：%s, 其他信息：%s", Thread.currentThread().getStackTrace()[1].getMethodName(), Thread.currentThread().getStackTrace()[1].getLineNumber(),
                 Arrays.toString(a)));

@@ -48,10 +48,10 @@ public class MyComment {
     public void adjust(int []input, int startIndex, int endIndex) {
         int value = input[startIndex];
         for(int i = startIndex * 2 + 1; i < endIndex; i = i * 2 + 1) {
-            if(i < endIndex && input[i] > input[i + 1]) {
+            if(i + 1 < endIndex && input[i] < input[i + 1]) {
                 i++;
             }
-            if(value > input[i]) {
+            if(value < input[i]) {
                 input[startIndex] = input[i];
                 startIndex = i;
             } else {

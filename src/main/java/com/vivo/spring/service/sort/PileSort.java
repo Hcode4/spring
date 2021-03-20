@@ -20,39 +20,39 @@ public class PileSort {
                 Arrays.toString(a)));
     }
 
-    public static void sort(int []array) {
-
-        for(int i = array.length / 2 - 1; i >= 0; i--) {
-            adjust(array, i, array.length);
+    public static void sort(int []input) {
+        for(int index = input.length / 2 - 1; index >= 0; index--) {
+            adjust(input, index, input.length);
         }
 
-        for(int i = array.length - 1; i > 0; i--) {
-            swap(array, 0, i);
-            adjust(array, 0, i);
+        for(int i = 0 ; i < input.length; i++) {
+            swap(input, 0, input.length - i - 1);
+            adjust(input, 0 , input.length - i - 1);
         }
-
     }
 
-    public static void adjust(int [] array, int startIndex, int length) {
-
-        int valueDeal = array[startIndex];
-        for(int i = startIndex * 2 + 1; i < length; i = i * 2 + 1) {
-            if(i + 1 < length && array[i] < array[i + 1]) {
-                i++;
+    public static void adjust(int []input, int startIndex, int endIndex) {
+        int value = input[startIndex];
+        for(int index = startIndex * 2 + 1; index < endIndex; index = index * 2 + 1) {
+            if(index + 1 < endIndex && input[index] < input[index + 1]) {
+                index++;
             }
-            if(valueDeal < array[i]) {
-                array[startIndex] = array[i];
-                startIndex = i;
+            if(value < input[index]) {
+                input[startIndex] = input[index];
+                startIndex = index;
             } else {
                 break;
             }
         }
-        array[startIndex] = valueDeal;
+        input[startIndex] = value;
     }
 
-    public static void swap(int[]array, int swapIndex, int replaceIndex) {
-        int temp = array[swapIndex];
-        array[swapIndex] = array[replaceIndex];
-        array[replaceIndex] = temp;
+    public static void swap(int []input, int replaceIndex, int replacedIndex) {
+        int valueTemplate = input[replacedIndex];
+        input[replacedIndex] = input[replaceIndex];
+        input[replaceIndex] = valueTemplate;
     }
+
+
+
 }
