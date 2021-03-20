@@ -29,6 +29,7 @@ public class FastSort {
             int j = hIndex;
             int value = a[lIndex];
             while (i < j) {
+
                 // 找到比自己小元素
                 while (i < j && value < a[j]) {
                     j--;

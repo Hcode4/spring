@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class PileSort {
 
     public static void main(String[] args) {
-        int[] a = new int[]{1, 11, 9, 12, 19, 4};
+        int[] a = new int[]{4,5,1,6,2,7,3,8};
         sort(a);
         log.info(String.format("方法：%s 第：%s, 其他信息：%s", Thread.currentThread().getStackTrace()[1].getMethodName(), Thread.currentThread().getStackTrace()[1].getLineNumber(),
                 Arrays.toString(a)));
@@ -23,7 +23,7 @@ public class PileSort {
     public static void sort(int []array) {
 
         for(int i = array.length / 2 - 1; i >= 0; i--) {
-            adjust(array, 0, array.length);
+            adjust(array, i, array.length);
         }
 
         for(int i = array.length - 1; i > 0; i--) {
@@ -40,8 +40,8 @@ public class PileSort {
             if(i + 1 < length && array[i] < array[i + 1]) {
                 i++;
             }
-            if(valueDeal <= array[i]) {
-                swap(array, startIndex, i);
+            if(valueDeal < array[i]) {
+                array[startIndex] = array[i];
                 startIndex = i;
             } else {
                 break;
